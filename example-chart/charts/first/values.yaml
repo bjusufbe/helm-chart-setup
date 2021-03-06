@@ -1,0 +1,28 @@
+# Default values for first.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+deployment:
+  name: first
+  replicaCount: 1
+  image:
+    app: nginx
+    version: latest
+  resources:
+    requestCpu: 100m
+    requestMemory: 128Mi
+    limitCpu: 100m
+    limitMemory: 128Mi
+  livenessProbe:
+    httpPath: /
+    httpPort: http
+  readinessProbe:
+    httpPath: /
+    httpPort: http
+
+service:
+  name: first
+  type: NodePort
+  port: 8081
+  nodePort: 31234
+  targetPort: http

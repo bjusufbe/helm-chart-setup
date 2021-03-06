@@ -1,0 +1,37 @@
+global:
+  label: 
+    system: example-chart
+
+first: # override values in subchart: first
+  deployment:
+    replicaCount: 2
+    image:
+      version: 1.1.0
+    resources:
+      requestCpu: 100m
+      requestMemory: 128Mi
+      limitCpu: 100m
+      limitMemory: 128Mi
+    livenessProbe:
+      httpPath: /
+      httpPort: 8083
+    readinessProbe:
+      httpPath: /
+      httpPort: 8083
+
+second: # override values in subchart: second
+  deployment:
+    replicaCount: 3
+    image:
+      version: 1.1.0
+    resources:
+      requestCpu: 100m
+      requestMemory: 128Mi
+      limitCpu: 300m
+      limitMemory: 500Mi
+    livenessProbe:
+      httpPath: /
+      httpPort: 8084
+    readinessProbe:
+      httpPath: /
+      httpPort: 8084

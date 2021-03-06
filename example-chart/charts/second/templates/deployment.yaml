@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.name }}
+  labels:
+    {{- include "second.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.deployment.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "second.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "second.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: nginxcontainer
+          image: "{{ .Values.deployment.image.app }}:{{ .Values.deployment.image.version }}"
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          {{- $resources := .Values.deployment.resources -}}
+          {{- include "example-chart.commonResources" (dict "resources" $resources)  | nindent 10 }}
+          {{- $livenessProbe := .Values.deployment.livenessProbe -}}
+          {{- include "example-chart.commonLivenessProbe" (dict "livenessProbe" $livenessProbe)  | nindent 10 }}
+          {{- $readinessProbe := .Values.deployment.readinessProbe -}}
+          {{- include "example-chart.commonReadinessProbe" (dict "readinessProbe" $readinessProbe)  | nindent 10 }}

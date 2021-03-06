@@ -1,0 +1,28 @@
+# Default values for second.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+deployment:
+  name: second
+  replicaCount: 1
+  image:
+    app: nginx
+    version: latest
+  resources:
+    requestCpu: 100m
+    requestMemory: 128Mi
+    limitCpu: 100m
+    limitMemory: 128Mi
+  livenessProbe:
+    httpPath: /
+    httpPort: http
+  readinessProbe:
+    httpPath: /
+    httpPort: http
+
+service:
+  name: second
+  type: NodePort
+  port: 8082
+  nodePort: 31235
+  targetPort: http
