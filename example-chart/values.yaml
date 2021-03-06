@@ -2,7 +2,13 @@ global:
   label: 
     system: example-chart
 
-first: # override values in subchart: first
+# override values in external subchart: chart
+spark:
+  image:
+    pullPolicy: Always
+
+# override values in subchart: first
+first: 
   deployment:
     replicaCount: 2
     image:
@@ -19,7 +25,8 @@ first: # override values in subchart: first
       httpPath: /
       httpPort: 8083
 
-second: # override values in subchart: second
+# override values in subchart: second
+second: 
   deployment:
     replicaCount: 3
     image:

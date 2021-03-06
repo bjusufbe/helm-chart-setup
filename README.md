@@ -38,10 +38,10 @@ This project represents Helm umbrella chart template. It contains following:
 
 To verify/debug helm templating, use following command:
 ```
-helm template . example-chart/
+helm template myrelease example-chart/
 ```
 
 To install helm umbrella chart (and its subcharts), use following command:
 ```
-helm install example-chart example-chart/
+helm install myrelease example-chart/
 ```
