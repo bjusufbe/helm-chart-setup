@@ -45,3 +45,8 @@ To install helm umbrella chart (and its subcharts), use following command:
 ```
 helm install myrelease example-chart/
 ```
+
+To install helm umbrella chart (and its subcharts) with prod values, use following command:
+```
+helm install myrelease --values ./example-chart/values_prod.yaml example-chart/
+```
