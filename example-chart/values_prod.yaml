@@ -1,0 +1,44 @@
+global:
+  label: 
+    system: example-chart
+
+# override values in external subchart: chart
+spark:
+  image:
+    pullPolicy: Always
+
+# override values in subchart: first
+first: 
+  deployment:
+    replicaCount: 5
+    image:
+      version: 1.1.0
+    resources:
+      requestCpu: 200m
+      requestMemory: 200Mi
+      limitCpu: 400m
+      limitMemory: 400Mi
+    livenessProbe:
+      httpPath: /
+      httpPort: 8083
+    readinessProbe:
+      httpPath: /
+      httpPort: 8083
+
+# override values in subchart: second
+second: 
+  deployment:
+    replicaCount: 5
+    image:
+      version: 1.1.0
+    resources:
+      requestCpu: 300m
+      requestMemory: 500Mi
+      limitCpu: 600m
+      limitMemory: 800Mi
+    livenessProbe:
+      httpPath: /
+      httpPort: 8084
+    readinessProbe:
+      httpPath: /
+      httpPort: 8084
